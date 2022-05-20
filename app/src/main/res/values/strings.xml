@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="local">本地</string>
+    <string name="recentPlay">最近播放</string>
+    <string name="favor">收藏</string>
 </resources>
