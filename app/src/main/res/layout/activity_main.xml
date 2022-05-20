@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/local"
+        android:icon="@android:drawable/ic_menu_save"
     />
 
     <Button
