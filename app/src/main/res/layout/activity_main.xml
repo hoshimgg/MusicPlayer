@@ -4,26 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnLocal"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/local"
-        android:drawableTop="@android:drawable/ic_menu_save"
-    />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnRecent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recentPlay"
-    />
+        <Button
+            android:id="@+id/btnLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/local"
+            android:drawableTop="@android:drawable/ic_menu_save"
+            />
 
-    <Button
-        android:id="@+id/btnFavor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/favor"
-    />
+        <Button
+            android:id="@+id/btnRecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recentPlay"
+            android:drawableTop="@android:drawable/ic_menu_recent_history"
+            />
 
+        <Button
+            android:id="@+id/btnFavor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favor"
+            android:drawableTop="@android:drawable/btn_star"
+            />
+    </LinearLayout>
 </LinearLayout>
