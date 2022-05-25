@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <Button
@@ -15,6 +16,7 @@
             android:layout_height="wrap_content"
             android:text="@string/local"
             android:drawableTop="@android:drawable/ic_menu_save"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             />
 
         <Button
@@ -23,6 +25,8 @@
             android:layout_height="wrap_content"
             android:text="@string/recentPlay"
             android:drawableTop="@android:drawable/ic_menu_recent_history"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+
             />
 
         <Button
@@ -31,6 +35,8 @@
             android:layout_height="wrap_content"
             android:text="@string/favor"
             android:drawableTop="@android:drawable/btn_star"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+
             />
     </LinearLayout>
 </LinearLayout>
