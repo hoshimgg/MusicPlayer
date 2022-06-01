@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../Library/Android/sdk/platforms/android-31/data/res/drawable/btn_star.xml" value="0.121" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18811950683593762" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.23385416666666667" />
       </map>
     </option>
   </component>
