@@ -10,4 +10,5 @@
     <string name="not_playing">未播放歌曲</string>
     <string name="album_cover">专辑封面</string>
     <string name="play_btn">播放按钮</string>
+    <string name="pause_btn">暂停按钮</string>
 </resources>

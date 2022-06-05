@@ -84,5 +84,16 @@
             android:contentDescription="@string/play_btn"
             app:icon="@android:drawable/ic_media_play"
             app:iconGravity="end" />
+
+        <Button
+            android:id="@+id/btnPause"
+            style="?android:attr/buttonBarButtonStyle"
+            android:visibility="gone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/pause_btn"
+            app:icon="@android:drawable/ic_media_pause"
+            app:iconGravity="end" />
     </RelativeLayout>
 </RelativeLayout>
