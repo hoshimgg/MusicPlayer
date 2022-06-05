@@ -114,9 +114,10 @@
         app:icon="@android:drawable/ic_popup_sync"
         app:iconGravity="textEnd"
         app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnFavor"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnFavor"
@@ -128,8 +129,9 @@
         app:icon="@android:drawable/btn_star"
         app:iconGravity="textEnd"
         app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnRepeat"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
