@@ -66,6 +66,7 @@
             android:src="@drawable/music_icon" />
 
         <TextView
+            android:id="@+id/songTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
@@ -74,6 +75,16 @@
             android:text="@string/not_playing"
             android:textColor="@color/black"
             android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_toStartOf="@id/btnPlay"
+            android:layout_toEndOf="@id/imgCover"
+            android:layout_below="@id/songTitle"
+            android:text="@string/not_playing"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btnPlay"
