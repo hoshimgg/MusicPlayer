@@ -11,4 +11,10 @@
     <string name="album_cover">专辑封面</string>
     <string name="play_btn">播放按钮</string>
     <string name="pause_btn">暂停按钮</string>
+    <string name="progress_bar_start">0:00</string>
+    <string name="progress_bar_end_default">1:00</string>
+    <string name="next_btn">下一首按钮</string>
+    <string name="previous_btn">上一首按钮</string>
+    <string name="repeat_btn">重复模式按钮</string>
+    <string name="favor_btn">收藏按钮</string>
 </resources>
