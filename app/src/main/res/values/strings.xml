@@ -7,4 +7,7 @@
     <string name="recentPlay">最近播放</string>
     <string name="favor">我的收藏</string>
     <string name="song_title">歌曲名称</string>
+    <string name="not_playing">未播放歌曲</string>
+    <string name="album_cover">专辑封面</string>
+    <string name="play_btn">播放按钮</string>
 </resources>

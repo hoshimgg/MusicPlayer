@@ -1,53 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnLocal"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:drawableTop="@android:drawable/ic_menu_save"
-            android:text="@string/local" />
+            android:text="@string/local"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btnRecent"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:drawableTop="@android:drawable/ic_menu_recent_history"
-            android:text="@string/recentPlay" />
+            android:text="@string/recentPlay"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/btnFavor"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:drawableTop="@android:drawable/btn_star"
-            android:text="@string/favor" />
+            android:text="@string/favor"
+            android:textColor="@color/black" />
     </LinearLayout>
 
-    <LinearLayout
+    <View
+        android:id="@+id/dvdPlayBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        android:layout_above="@id/rlPlayBar"/>
+
+    <RelativeLayout
+        android:id="@+id/rlPlayBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        tools:ignore="RtlSymmetry">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/music_icon"/>
+            android:id="@+id/imgCover"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/album_cover"
+            android:src="@drawable/music_icon" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/song_title" />
+            android:layout_marginStart="9dp"
+            android:layout_toStartOf="@id/btnPlay"
+            android:layout_toEndOf="@id/imgCover"
+            android:text="@string/not_playing"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
-    </LinearLayout>
-
+        <Button
+            android:id="@+id/btnPlay"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/play_btn"
+            app:icon="@android:drawable/ic_media_play"
+            app:iconGravity="end" />
+    </RelativeLayout>
 </RelativeLayout>
