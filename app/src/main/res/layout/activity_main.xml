@@ -77,12 +77,13 @@
             android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/songArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/songTitle"
             android:layout_marginStart="9dp"
             android:layout_toStartOf="@id/btnPlay"
             android:layout_toEndOf="@id/imgCover"
-            android:layout_below="@id/songTitle"
             android:text="@string/not_playing"
             android:textSize="15sp" />
 
