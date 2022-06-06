@@ -1,21 +1,17 @@
 package xyz.miaoguoge.musicplayer
 
 import android.content.Intent
-import android.content.res.AssetFileDescriptor
-import android.content.res.AssetManager
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import xyz.miaoguoge.musicplayer.Config.mediaPlayer
 import xyz.miaoguoge.musicplayer.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val mediaPlayer = MediaPlayer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             mediaPlayer.pause()
         }
         binding.rlPlayBar.setOnClickListener {
-            startActivity(Intent(this, PlayerActivity::class.java))
+            val intent = Intent(this, PlayerActivity::class.java)
+            startActivity(intent)
         }
     }
 
