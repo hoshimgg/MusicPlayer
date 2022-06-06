@@ -15,17 +15,16 @@ class PlayerActivity : AppCompatActivity() {
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvSongTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
-        binding.tvSongArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
-        val cover = Config.mmr.embeddedPicture
-        if (cover != null) {
-            val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
-            binding.ivAlbumCover.setImageBitmap(bitmap)
-        }
-
         if (Config.mediaPlayer.isPlaying) {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
+            binding.tvSongTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+            binding.tvSongArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+            val cover = Config.mmr.embeddedPicture
+            if (cover != null) {
+                val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
+                binding.ivAlbumCover.setImageBitmap(bitmap)
+            }
         } else {
             binding.btnPause.visibility = Button.INVISIBLE
             binding.btnPlay.visibility = Button.VISIBLE
