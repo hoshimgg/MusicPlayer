@@ -45,6 +45,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PlayerActivity::class.java)
             startActivity(intent)
         }
+        //btnLocal跳转到LocalMusicActivity
+        binding.btnLocal.setOnClickListener {
+            val intent = Intent(this, LocalMusicActivity::class.java)
+            startActivity(intent)
+        }
+        //btnRecent跳转到RecentPlayActivity
+        binding.btnRecent.setOnClickListener {
+            val intent = Intent(this, RecentPlayActivity::class.java)
+            startActivity(intent)
+        }
+        //btnFavor跳转到MyCollectionActivity
+        binding.btnFavor.setOnClickListener {
+            val intent = Intent(this, MyCollectionActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
