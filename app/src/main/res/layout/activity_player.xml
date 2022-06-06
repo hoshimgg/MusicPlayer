@@ -67,11 +67,27 @@
     <Button
         android:id="@+id/btnPlay"
         style="?android:attr/buttonBarButtonStyle"
+        android:visibility="visible"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="25dp"
         android:contentDescription="@string/play_btn"
         app:icon="@android:drawable/ic_media_play"
+        app:iconGravity="textEnd"
+        app:iconSize="70dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentTime" />
+
+    <Button
+        android:id="@+id/btnPause"
+        style="?android:attr/buttonBarButtonStyle"
+        android:visibility="invisible"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/pause_btn"
+        app:icon="@android:drawable/ic_media_pause"
         app:iconGravity="textEnd"
         app:iconSize="70dp"
         app:layout_constraintLeft_toLeftOf="parent"
