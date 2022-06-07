@@ -163,7 +163,9 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnStarNo.visibility = Button.INVISIBLE
             binding.btnStarYes.visibility = Button.VISIBLE
             //添加到收藏
-            val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])!!
+            val filename = Config.musicList[Config.currentMusic]
+            Log.d("PlayerActivity", filename)
+            val curSong = Global.getSongByFilename(filename)!!
             Global.Favor.add(curSong)
             Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show()
         }
