@@ -95,13 +95,26 @@ class PlayerActivity : AppCompatActivity() {
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                Log.d("PlayerActivity", "seek to $progress")
                 if (fromUser) {
-                    Log.d("PlayerActivity", "seek to $progress")
                     val duration = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!.toInt()
                     val msec = progress * duration / 100
                     Config.mediaPlayer.seekTo(msec)
                     val currentTime = String.format("%d:%02d", msec / 1000 / 60, msec / 1000 % 60)
                     binding.tvCurrentTime.text = currentTime
+                }
+                if (progress >= 98) {
+                    Config.mediaPlayer.stop()
+                    Config.mediaPlayer.release()
+                    Config.setNextIndex()
+                    val assetManager = assets
+                    val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
+                    Config.mediaPlayer = MediaPlayer()
+                    Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+                    Config.mediaPlayer.prepare()
+                    Config.mediaPlayer.start()
+                    Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+                    updateInfo()
                 }
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}

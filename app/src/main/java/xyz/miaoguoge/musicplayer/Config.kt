@@ -3,6 +3,23 @@ package xyz.miaoguoge.musicplayer
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 
+//class MyMediaPlayer : MediaPlayer() {
+//    override fun setOnCompletionListener(listener: OnCompletionListener?) {
+//        super.setOnCompletionListener(listener)
+//        stop()
+//        release()
+//        Config.setNextIndex()
+//        val localFd = assetManager.openFd(Config.musicList[Config.currentMusic])
+//        Config.mediaPlayer = MediaPlayer()
+//        Config.mediaPlayer.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+//        Config.mediaPlayer.prepare()
+//        Config.mediaPlayer.start()
+//        Config.mmr.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+//        updateInfo()
+//        Config.inAutoNext = true
+//    }
+//}
+
 object Config {
     var mediaPlayer = MediaPlayer()
     val mmr = MediaMetadataRetriever()

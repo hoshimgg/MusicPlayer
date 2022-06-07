@@ -24,19 +24,19 @@ class MainActivity : AppCompatActivity() {
         Config.mediaPlayer.prepare()
         Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
 
-        Config.mediaPlayer.setOnCompletionListener {
-            Config.mediaPlayer.stop()
-            Config.mediaPlayer.release()
-            Config.setNextIndex()
-            val localFd = assetManager.openFd(Config.musicList[Config.currentMusic])
-            Config.mediaPlayer = MediaPlayer()
-            Config.mediaPlayer.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
-            Config.mediaPlayer.prepare()
-            Config.mediaPlayer.start()
-            Config.mmr.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
-            updateInfo()
-            Config.inAutoNext = true
-        }
+//        Config.mediaPlayer.setOnCompletionListener {
+//            Config.mediaPlayer.stop()
+//            Config.mediaPlayer.release()
+//            Config.setNextIndex()
+//            val localFd = assetManager.openFd(Config.musicList[Config.currentMusic])
+//            Config.mediaPlayer = MediaPlayer()
+//            Config.mediaPlayer.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+//            Config.mediaPlayer.prepare()
+//            Config.mediaPlayer.start()
+//            Config.mmr.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+//            updateInfo()
+//            Config.inAutoNext = true
+//        }
 
         //遍历assets目录下的所有mp3文件
         var files = assetManager.list("") as Array<String>;
