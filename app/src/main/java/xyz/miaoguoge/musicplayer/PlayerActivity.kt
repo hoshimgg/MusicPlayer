@@ -1,5 +1,6 @@
 package xyz.miaoguoge.musicplayer
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
@@ -8,8 +9,11 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import xyz.miaoguoge.musicplayer.databinding.ActivityPlayerBinding
 import java.util.*
@@ -90,12 +94,8 @@ class PlayerActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
             Config.mediaPlayer.stop()
             Config.mediaPlayer.release()
+            setNextIndex()
             val assetManager = assets
-            if (Config.currentMusic < Config.musicList.size - 1) {
-                Config.currentMusic++
-            } else {
-                Config.currentMusic = 0
-            }
             val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
             Config.mediaPlayer = MediaPlayer()
             Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
@@ -130,16 +130,44 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnAllCycle.visibility = Button.INVISIBLE
             binding.btnShuffle.visibility = Button.VISIBLE
             binding.btnSingleCycle.visibility = Button.INVISIBLE
+            Config.playMode = "shuffle"
         }
         binding.btnShuffle.setOnClickListener {
             binding.btnShuffle.visibility = Button.INVISIBLE
             binding.btnSingleCycle.visibility = Button.VISIBLE
             binding.btnAllCycle.visibility = Button.INVISIBLE
+            Config.playMode = "single"
         }
         binding.btnSingleCycle.setOnClickListener {
             binding.btnSingleCycle.visibility = Button.INVISIBLE
             binding.btnAllCycle.visibility = Button.VISIBLE
             binding.btnShuffle.visibility = Button.INVISIBLE
+            Config.playMode = "all"
+        }
+
+        binding.btnStarNo.setOnClickListener {
+            binding.btnStarNo.visibility = Button.INVISIBLE
+            binding.btnStarYes.visibility = Button.VISIBLE
+        }
+        binding.btnStarYes.setOnClickListener {
+            binding.btnStarYes.visibility = Button.INVISIBLE
+            binding.btnStarNo.visibility = Button.VISIBLE
+        }
+    }
+
+    private fun setNextIndex() {
+        when (Config.playMode) {
+            "all" -> {
+                if (Config.currentMusic < Config.musicList.size - 1) {
+                    Config.currentMusic++
+                } else {
+                    Config.currentMusic = 0
+                }
+            }
+            "shuffle" -> {
+                val indexList = (0 until Config.currentMusic) + (Config.currentMusic + 1 until Config.musicList.size)
+                Config.currentMusic = indexList.random()
+            }
         }
     }
 
@@ -154,5 +182,27 @@ class PlayerActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
             binding.ivAlbumCover.setImageBitmap(bitmap)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_player, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_to_playlist -> {
+                Toast.makeText(this, "添加到歌单", Toast.LENGTH_SHORT).show()
+            }
+            R.id.goto_album -> {
+                val intent = Intent(this, LocalMusicActivity::class.java)
+            }
+        }
+        return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
     }
 }
