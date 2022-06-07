@@ -40,6 +40,9 @@ class PlayerActivity : AppCompatActivity() {
     private fun updateInfo() {
         binding.tvSongTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
         binding.tvSongArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+        val duration = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+        val endTime = "${duration!!.toInt() / 1000 / 60}:${duration.toInt() / 1000 % 60}"
+        binding.tvEndTime.text = endTime
         val cover = Config.mmr.embeddedPicture
         if (cover != null) {
             val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
