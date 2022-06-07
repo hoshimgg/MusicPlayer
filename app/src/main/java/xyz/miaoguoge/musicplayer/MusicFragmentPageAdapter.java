@@ -19,13 +19,13 @@ public class MusicFragmentPageAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 1:
-                return new AlbumFragment();
+                return new SingleSongFragment();
             case 2:
                 return new SingerFragment();
             case 3:
                 return new FolderFragment();
             default:
-                return new SingleSongFragment();
+                return new AlbumFragment();
         }
     }
 

@@ -27,8 +27,8 @@ class LocalMusicActivity : AppCompatActivity() {
             musicTab, viewPager
         ) { tab: TabLayout.Tab, position: Int ->
             when (position) {
-                0 -> tab.text = "单曲"
-                1 -> tab.text = "专辑"
+                0 -> tab.text = "专辑"
+                1 -> tab.text = "单曲"
                 2 -> tab.text = "歌手"
                 3 -> tab.text = "文件夹"
             }
