@@ -106,6 +106,25 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
         }
+        binding.btnPrevious.setOnClickListener {
+            Config.mediaPlayer.stop()
+            Config.mediaPlayer.release()
+            val assetManager = assets
+            if (Config.currentMusic > 0) {
+                Config.currentMusic--
+            } else {
+                Config.currentMusic = Config.musicList.size - 1
+            }
+            val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
+            Config.mediaPlayer = MediaPlayer()
+            Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+            Config.mediaPlayer.prepare()
+            Config.mediaPlayer.start()
+            Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+            updateInfo()
+            binding.btnPlay.visibility = Button.INVISIBLE
+            binding.btnPause.visibility = Button.VISIBLE
+        }
     }
 
     private fun updateInfo() {
