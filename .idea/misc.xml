@@ -15,17 +15,9 @@
         <entry key="..\:/Users/miaog/Projects/StudioProjects/MusicPlayer/app/src/main/res/layout/fragment_home.xml" value="0.40677083333333336" />
         <entry key="..\:/Users/miaog/Projects/StudioProjects/MusicPlayer/app/src/main/res/layout/fragment_notifications.xml" value="0.40677083333333336" />
         <entry key="..\:/Users/miaog/Projects/StudioProjects/MusicPlayer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.37592592592592594" />
-        <entry key="app/src/main/res/layout/activity_local_music.xml" value="0.2078125" />
+        <entry key="..\:/Users/miaog/Projects/StudioProjects/MusicPlayer/app/src/main/res/menu/main.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_my_collection.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/activity_player.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/activity_recent_play.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.23385416666666667" />
-        <entry key="app/src/main/res/layout/fragment_folder.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/fragment_singer.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/fragment_single_song.xml" value="0.2078125" />
-        <entry key="app/src/main/res/layout/song_item.xml" value="0.20677083333333332" />
       </map>
     </option>
   </component>

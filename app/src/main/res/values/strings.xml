@@ -17,4 +17,7 @@
     <string name="previous_btn">上一首按钮</string>
     <string name="repeat_btn">重复模式按钮</string>
     <string name="favor_btn">收藏按钮</string>
+    <string name="add_to_playlist">添加到歌单</string>
+    <string name="goto_album">查看专辑</string>
+    <string name="goto_artist">查看歌手</string>
 </resources>

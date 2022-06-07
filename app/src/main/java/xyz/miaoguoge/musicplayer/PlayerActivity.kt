@@ -1,5 +1,6 @@
 package xyz.miaoguoge.musicplayer
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
@@ -8,8 +9,11 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import xyz.miaoguoge.musicplayer.databinding.ActivityPlayerBinding
 import java.util.*
@@ -178,6 +182,23 @@ class PlayerActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
             binding.ivAlbumCover.setImageBitmap(bitmap)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_player, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_to_playlist -> {
+                Toast.makeText(this, "添加到歌单", Toast.LENGTH_SHORT).show()
+            }
+            R.id.goto_album -> {
+                val intent = Intent(this, LocalMusicActivity::class.java)
+            }
+        }
+        return true
     }
 
     override fun onDestroy() {
