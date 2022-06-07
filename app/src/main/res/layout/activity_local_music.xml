@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorColor="@color/purple_200"
-        app:tabSelectedTextColor="@color/purple_500"
+        app:tabSelectedTextColor="@color/grey_200"
         app:tabTextColor="@color/white">
 
     </com.google.android.material.tabs.TabLayout>

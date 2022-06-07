@@ -44,14 +44,19 @@ class MainActivity : AppCompatActivity() {
                 Global.All.add(song_temp)
             }
         }
-        //暂时将Recent和Favor设置为All
-        Global.Recent = Global.All
-        Global.Favor = Global.All
+        //从0-6遍历All数组,前三个加入Recent,后三个加入Favor
+        for (i in 0..6) {
+            if (i < 3) {
+                Global.Recent.add(Global.All[i])
+            } else {
+                Global.Favor.add(Global.All[i])
+            }
+        }
 
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
-            Config.mediaPlayer.start()
+            Config.StartPlay()
             Config.isLoaded = true
             updateInfo()
         }

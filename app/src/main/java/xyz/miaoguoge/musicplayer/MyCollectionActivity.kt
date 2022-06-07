@@ -20,6 +20,6 @@ class MyCollectionActivity : AppCompatActivity() {
 
     }
     private fun initSong() {
-        songList = Global.Recent as ArrayList<Song>
+        songList = Global.Favor as ArrayList<Song>
     }
 }

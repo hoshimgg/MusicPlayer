@@ -76,7 +76,7 @@ class PlayerActivity : AppCompatActivity() {
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
-            Config.mediaPlayer.start()
+            Config.StartPlay()
             updateInfo()
             setStarBtn()
             if (!Config.isLoaded) {
@@ -114,7 +114,7 @@ class PlayerActivity : AppCompatActivity() {
             Config.mediaPlayer = MediaPlayer()
             Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             Config.mediaPlayer.prepare()
-            Config.mediaPlayer.start()
+            Config.StartPlay()
             Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             updateInfo()
             binding.btnPlay.visibility = Button.INVISIBLE
@@ -133,7 +133,7 @@ class PlayerActivity : AppCompatActivity() {
             Config.mediaPlayer = MediaPlayer()
             Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             Config.mediaPlayer.prepare()
-            Config.mediaPlayer.start()
+            Config.StartPlay()
             Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             updateInfo()
             binding.btnPlay.visibility = Button.INVISIBLE

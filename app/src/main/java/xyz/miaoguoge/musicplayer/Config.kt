@@ -18,4 +18,14 @@ object Config {
     )
     var currentMusic = 0
     var playMode = "all"
+
+    fun StartPlay() {
+        val CurSong = Global.getSongByFilename(musicList[currentMusic])
+        if(CurSong !in Global.Recent){
+            if (CurSong != null) {
+                Global.Recent.add(CurSong)
+            }
+        }
+        mediaPlayer.start()
+    }
 }

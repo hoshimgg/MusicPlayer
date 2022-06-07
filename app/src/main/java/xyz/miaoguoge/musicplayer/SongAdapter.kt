@@ -47,7 +47,7 @@ class SongAdapter(mSongList: List<Song>) : RecyclerView.Adapter<SongAdapter.View
             Config.mediaPlayer = MediaPlayer()
             Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             Config.mediaPlayer.prepare()
-            Config.mediaPlayer.start()
+            Config.StartPlay()
             Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
             Config.isLoaded = true
         }
