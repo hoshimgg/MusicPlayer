@@ -24,6 +24,30 @@ class MainActivity : AppCompatActivity() {
 
         Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
 
+        //遍历assets目录下的所有mp3文件
+        var files = assetManager.list("") as Array<String>;
+        var fd_temp = assetManager.openFd("snow_halation.mp3")
+        var mmr_temp = MediaMetadataRetriever()
+        var song_temp = Song()
+        for (file in files) {
+            println(file)
+            if(file.contains(".mp3")){
+                fd_temp = assetManager.openFd(file)
+                mmr_temp.setDataSource(fd_temp.fileDescriptor, fd_temp.startOffset, fd_temp.length)
+                song_temp.Album = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
+                song_temp.Artist = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+                song_temp.Title = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+                var cover = mmr_temp.getEmbeddedPicture()
+                if (cover != null) {
+                    song_temp.bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
+                }
+                Global.All.add(song_temp)
+            }
+        }
+        //暂时将Recent和Favor设置为All
+        Global.Recent = Global.All
+        Global.Favor = Global.All
+
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
