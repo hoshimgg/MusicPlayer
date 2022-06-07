@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 song_temp.Album = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
                 song_temp.Artist = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
                 song_temp.Title = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+                song_temp.Filename = file
                 var cover = mmr_temp.getEmbeddedPicture()
                 if (cover != null) {
                     song_temp.bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)

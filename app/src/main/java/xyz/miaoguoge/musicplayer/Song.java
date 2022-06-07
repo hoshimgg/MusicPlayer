@@ -7,4 +7,5 @@ public class Song {
     String Artist;
     String Album;
     String Title;
+    String Filename;
 }
