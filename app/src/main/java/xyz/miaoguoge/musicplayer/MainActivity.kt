@@ -3,6 +3,7 @@ package xyz.miaoguoge.musicplayer
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +22,21 @@ class MainActivity : AppCompatActivity() {
         val fd = assetManager.openFd(Config.musicList[0])
         Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
         Config.mediaPlayer.prepare()
-
         Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+
+        Config.mediaPlayer.setOnCompletionListener {
+            Config.mediaPlayer.stop()
+            Config.mediaPlayer.release()
+            Config.setNextIndex()
+            val localFd = assetManager.openFd(Config.musicList[Config.currentMusic])
+            Config.mediaPlayer = MediaPlayer()
+            Config.mediaPlayer.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+            Config.mediaPlayer.prepare()
+            Config.mediaPlayer.start()
+            Config.mmr.setDataSource(localFd.fileDescriptor, localFd.startOffset, localFd.length)
+            updateInfo()
+            Config.inAutoNext = true
+        }
 
         //遍历assets目录下的所有mp3文件
         var files = assetManager.list("") as Array<String>;

@@ -32,6 +32,9 @@ class PlayerActivity : AppCompatActivity() {
                     binding.seekBar.progress = 100 * currentPosition / duration
                     val currentTime = String.format("%d:%02d", currentPosition / 1000 / 60, currentPosition / 1000 % 60)
                     binding.tvCurrentTime.text = currentTime
+                    if (Config.inAutoNext) {
+                        updateInfo()
+                    }
                 }
             }
         }
@@ -108,7 +111,7 @@ class PlayerActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
             Config.mediaPlayer.stop()
             Config.mediaPlayer.release()
-            setNextIndex()
+            Config.setNextIndex()
             val assetManager = assets
             val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
             Config.mediaPlayer = MediaPlayer()
@@ -176,22 +179,6 @@ class PlayerActivity : AppCompatActivity() {
             val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])
             Global.Favor.remove(curSong)
             Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun setNextIndex() {
-        when (Config.playMode) {
-            "all" -> {
-                if (Config.currentMusic < Config.musicList.size - 1) {
-                    Config.currentMusic++
-                } else {
-                    Config.currentMusic = 0
-                }
-            }
-            "shuffle" -> {
-                val indexList = (0 until Config.currentMusic) + (Config.currentMusic + 1 until Config.musicList.size)
-                Config.currentMusic = indexList.random()
-            }
         }
     }
 

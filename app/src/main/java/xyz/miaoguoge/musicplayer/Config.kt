@@ -18,4 +18,21 @@ object Config {
     )
     var currentMusic = 0
     var playMode = "all"
+    var inAutoNext = false
+
+    fun setNextIndex() {
+        when (playMode) {
+            "all" -> {
+                if (currentMusic < musicList.size - 1) {
+                    currentMusic++
+                } else {
+                    currentMusic = 0
+                }
+            }
+            "shuffle" -> {
+                val indexList = (0 until currentMusic) + (currentMusic + 1 until musicList.size)
+                currentMusic = indexList.random()
+            }
+        }
+    }
 }
