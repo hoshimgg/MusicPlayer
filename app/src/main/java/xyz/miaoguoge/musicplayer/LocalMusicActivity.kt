@@ -14,7 +14,6 @@ class LocalMusicActivity : AppCompatActivity() {
         // 得到ViewPager对象
         //创建viewpager和tablayout
 
-
         // 得到ViewPager对象
         //创建viewpager和tablayout
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)

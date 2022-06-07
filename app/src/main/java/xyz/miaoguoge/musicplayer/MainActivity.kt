@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MyCollectionActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onDestroy() {
