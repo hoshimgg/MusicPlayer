@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MyCollectionActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun updateInfo() {
