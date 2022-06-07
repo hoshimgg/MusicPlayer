@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val assetManager = assets
-        val fd = assetManager.openFd("snow_halation.mp3")
+        val fd = assetManager.openFd(Config.musicList[0])
         Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
         Config.mediaPlayer.prepare()
 
