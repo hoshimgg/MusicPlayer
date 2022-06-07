@@ -110,6 +110,7 @@ class PlayerActivity : AppCompatActivity() {
                     val assetManager = assets
                     val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
                     Config.mediaPlayer = MediaPlayer()
+                    Config.mediaPlayer.reset()
                     Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
                     Config.mediaPlayer.prepare()
                     Config.mediaPlayer.start()
