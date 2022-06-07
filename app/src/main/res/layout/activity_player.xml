@@ -134,7 +134,7 @@
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btnFavor"
+        app:layout_constraintRight_toLeftOf="@id/btnStarNo"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
@@ -168,13 +168,29 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/btnFavor"
+        android:id="@+id/btnStarNo"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/favor_btn"
-        app:icon="@android:drawable/btn_star"
+        app:icon="@drawable/star_no"
+        app:iconGravity="textEnd"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnSingleCycle"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnStarYes"
+        style="?android:attr/buttonBarButtonStyle"
+        android:visibility="invisible"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/favor_btn"
+        app:icon="@drawable/star_yes"
         app:iconGravity="textEnd"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"

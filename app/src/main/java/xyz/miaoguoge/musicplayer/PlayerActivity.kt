@@ -140,6 +140,15 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnShuffle.visibility = Button.INVISIBLE
             Config.playMode = "all"
         }
+
+        binding.btnStarNo.setOnClickListener {
+            binding.btnStarNo.visibility = Button.INVISIBLE
+            binding.btnStarYes.visibility = Button.VISIBLE
+        }
+        binding.btnStarYes.setOnClickListener {
+            binding.btnStarYes.visibility = Button.INVISIBLE
+            binding.btnStarNo.visibility = Button.VISIBLE
+        }
     }
 
     private fun setNextIndex() {
