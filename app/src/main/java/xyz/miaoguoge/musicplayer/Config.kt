@@ -17,4 +17,5 @@ object Config {
         "senbonsakura.mp3"
     )
     var currentMusic = 0
+    var playMode = "all"
 }

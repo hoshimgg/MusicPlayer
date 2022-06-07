@@ -90,12 +90,8 @@ class PlayerActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
             Config.mediaPlayer.stop()
             Config.mediaPlayer.release()
+            setNextIndex()
             val assetManager = assets
-            if (Config.currentMusic < Config.musicList.size - 1) {
-                Config.currentMusic++
-            } else {
-                Config.currentMusic = 0
-            }
             val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
             Config.mediaPlayer = MediaPlayer()
             Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
@@ -130,16 +126,35 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnAllCycle.visibility = Button.INVISIBLE
             binding.btnShuffle.visibility = Button.VISIBLE
             binding.btnSingleCycle.visibility = Button.INVISIBLE
+            Config.playMode = "shuffle"
         }
         binding.btnShuffle.setOnClickListener {
             binding.btnShuffle.visibility = Button.INVISIBLE
             binding.btnSingleCycle.visibility = Button.VISIBLE
             binding.btnAllCycle.visibility = Button.INVISIBLE
+            Config.playMode = "single"
         }
         binding.btnSingleCycle.setOnClickListener {
             binding.btnSingleCycle.visibility = Button.INVISIBLE
             binding.btnAllCycle.visibility = Button.VISIBLE
             binding.btnShuffle.visibility = Button.INVISIBLE
+            Config.playMode = "all"
+        }
+    }
+
+    private fun setNextIndex() {
+        when (Config.playMode) {
+            "all" -> {
+                if (Config.currentMusic < Config.musicList.size - 1) {
+                    Config.currentMusic++
+                } else {
+                    Config.currentMusic = 0
+                }
+            }
+            "shuffle" -> {
+                val indexList = (0 until Config.currentMusic) + (Config.currentMusic + 1 until Config.musicList.size)
+                Config.currentMusic = indexList.random()
+            }
         }
     }
 
@@ -154,5 +169,10 @@ class PlayerActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
             binding.ivAlbumCover.setImageBitmap(bitmap)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
     }
 }
