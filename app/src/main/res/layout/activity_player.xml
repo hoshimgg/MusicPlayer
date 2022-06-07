@@ -140,7 +140,7 @@
     <Button
         android:id="@+id/btnAllCycle"
         style="?android:attr/buttonBarButtonStyle"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"
@@ -155,7 +155,7 @@
     <Button
         android:id="@+id/btnShuffle"
         style="?android:attr/buttonBarButtonStyle"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginBottom="20dp"

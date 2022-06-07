@@ -125,6 +125,22 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
         }
+
+        binding.btnAllCycle.setOnClickListener {
+            binding.btnAllCycle.visibility = Button.INVISIBLE
+            binding.btnShuffle.visibility = Button.VISIBLE
+            binding.btnSingleCycle.visibility = Button.INVISIBLE
+        }
+        binding.btnShuffle.setOnClickListener {
+            binding.btnShuffle.visibility = Button.INVISIBLE
+            binding.btnSingleCycle.visibility = Button.VISIBLE
+            binding.btnAllCycle.visibility = Button.INVISIBLE
+        }
+        binding.btnSingleCycle.setOnClickListener {
+            binding.btnSingleCycle.visibility = Button.INVISIBLE
+            binding.btnAllCycle.visibility = Button.VISIBLE
+            binding.btnShuffle.visibility = Button.INVISIBLE
+        }
     }
 
     private fun updateInfo() {
