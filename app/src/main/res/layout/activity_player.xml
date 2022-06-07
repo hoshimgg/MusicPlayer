@@ -57,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/seekBar" />
 
     <TextView
+        android:id="@+id/tvEndTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

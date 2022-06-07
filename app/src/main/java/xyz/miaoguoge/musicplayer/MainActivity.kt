@@ -1,6 +1,5 @@
 package xyz.miaoguoge.musicplayer
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val assetManager = assets
-        val fd = assetManager.openFd("snow_halation.mp3")
+        val fd = assetManager.openFd(Config.musicList[0])
         Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
         Config.mediaPlayer.prepare()
 
@@ -53,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
+            Config.isLoaded = true
             updateInfo()
         }
         binding.btnPause.setOnClickListener {
@@ -78,6 +78,20 @@ class MainActivity : AppCompatActivity() {
         binding.btnFavor.setOnClickListener {
             val intent = Intent(this, MyCollectionActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (Config.isLoaded) {
+            updateInfo()
+        }
+        if (Config.mediaPlayer.isPlaying) {
+            binding.btnPlay.visibility = Button.INVISIBLE
+            binding.btnPause.visibility = Button.VISIBLE
+        } else {
+            binding.btnPlay.visibility = Button.VISIBLE
+            binding.btnPause.visibility = Button.INVISIBLE
         }
     }
 
