@@ -4,7 +4,7 @@ import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 
 object Config {
-    val mediaPlayer = MediaPlayer()
+    var mediaPlayer = MediaPlayer()
     val mmr = MediaMetadataRetriever()
     var isLoaded = false
     val musicList = listOf(
@@ -16,4 +16,5 @@ object Config {
         "secret_base.mp3",
         "senbonsakura.mp3"
     )
+    var currentMusic = 0
 }
