@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         Config.mediaPlayer.prepare()
 
         Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
-        val cover = Config.mmr.embeddedPicture
 
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             Config.mediaPlayer.start()
             binding.songTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
             binding.songArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+            val cover = Config.mmr.embeddedPicture
             if (cover != null) {
                 val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
                 binding.imgCover.setImageBitmap(bitmap)
