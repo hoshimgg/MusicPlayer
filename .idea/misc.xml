@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_folder.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_singer.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_single_song.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/song_item.xml" value="0.20677083333333332" />
       </map>
     </option>
   </component>

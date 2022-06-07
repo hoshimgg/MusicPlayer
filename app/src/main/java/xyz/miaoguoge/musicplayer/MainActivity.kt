@@ -28,10 +28,9 @@ class MainActivity : AppCompatActivity() {
         var files = assetManager.list("") as Array<String>;
         var fd_temp = assetManager.openFd("snow_halation.mp3")
         var mmr_temp = MediaMetadataRetriever()
-        var song_temp = Song()
         for (file in files) {
-            println(file)
             if(file.contains(".mp3")){
+                var song_temp = Song();
                 fd_temp = assetManager.openFd(file)
                 mmr_temp.setDataSource(fd_temp.fileDescriptor, fd_temp.startOffset, fd_temp.length)
                 song_temp.Album = mmr_temp.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
