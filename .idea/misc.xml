@@ -20,7 +20,11 @@
         <entry key="app/src/main/res/layout/activity_my_collection.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/activity_recent_play.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.2078125" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/fragment_folder.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/fragment_singer.xml" value="0.2078125" />
+        <entry key="app/src/main/res/layout/fragment_single_song.xml" value="0.2078125" />
       </map>
     </option>
   </component>
