@@ -32,6 +32,9 @@ class PlayerActivity : AppCompatActivity() {
                     binding.seekBar.progress = 100 * currentPosition / duration
                     val currentTime = String.format("%d:%02d", currentPosition / 1000 / 60, currentPosition / 1000 % 60)
                     binding.tvCurrentTime.text = currentTime
+                    if (Config.inAutoNext) {
+                        updateInfo()
+                    }
                 }
             }
         }
@@ -92,13 +95,26 @@ class PlayerActivity : AppCompatActivity() {
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                Log.d("PlayerActivity", "seek to $progress")
                 if (fromUser) {
-                    Log.d("PlayerActivity", "seek to $progress")
                     val duration = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)!!.toInt()
                     val msec = progress * duration / 100
                     Config.mediaPlayer.seekTo(msec)
                     val currentTime = String.format("%d:%02d", msec / 1000 / 60, msec / 1000 % 60)
                     binding.tvCurrentTime.text = currentTime
+                }
+                if (progress >= 98) {
+                    Config.mediaPlayer.stop()
+                    Config.mediaPlayer.release()
+                    Config.setNextIndex()
+                    val assetManager = assets
+                    val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
+                    Config.mediaPlayer = MediaPlayer()
+                    Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+                    Config.mediaPlayer.prepare()
+                    Config.mediaPlayer.start()
+                    Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+                    updateInfo()
                 }
             }
             override fun onStartTrackingTouch(p0: SeekBar?) {}
@@ -108,7 +124,7 @@ class PlayerActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener {
             Config.mediaPlayer.stop()
             Config.mediaPlayer.release()
-            setNextIndex()
+            Config.setNextIndex()
             val assetManager = assets
             val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
             Config.mediaPlayer = MediaPlayer()
@@ -163,7 +179,9 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnStarNo.visibility = Button.INVISIBLE
             binding.btnStarYes.visibility = Button.VISIBLE
             //添加到收藏
-            val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])!!
+            val filename = Config.musicList[Config.currentMusic]
+            Log.d("PlayerActivity", filename)
+            val curSong = Global.getSongByFilename(filename)!!
             Global.Favor.add(curSong)
             Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show()
         }
@@ -174,22 +192,6 @@ class PlayerActivity : AppCompatActivity() {
             val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])
             Global.Favor.remove(curSong)
             Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun setNextIndex() {
-        when (Config.playMode) {
-            "all" -> {
-                if (Config.currentMusic < Config.musicList.size - 1) {
-                    Config.currentMusic++
-                } else {
-                    Config.currentMusic = 0
-                }
-            }
-            "shuffle" -> {
-                val indexList = (0 until Config.currentMusic) + (Config.currentMusic + 1 until Config.musicList.size)
-                Config.currentMusic = indexList.random()
-            }
         }
     }
 
