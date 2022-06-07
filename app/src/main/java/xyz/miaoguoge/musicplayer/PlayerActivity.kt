@@ -31,14 +31,14 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
     }
-    val timerTask: TimerTask = object : TimerTask() {
+    private val timerTask: TimerTask = object : TimerTask() {
         override fun run() {
             if (Config.mediaPlayer.isPlaying && !binding.seekBar.isPressed) {
                 handler.sendEmptyMessage(updateSeekbar) // 发送消息
             }
         }
     }
-    val timer = Timer()
+    private val timer = Timer()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +52,18 @@ class PlayerActivity : AppCompatActivity() {
         }
         if (Config.isLoaded) {
             updateInfo()
+            timer.schedule(timerTask, 0, 1000)
         }
 
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
-            Config.isLoaded = true
             updateInfo()
-            timer.schedule(timerTask, 0, 1000)
+            if (!Config.isLoaded) {
+                timer.schedule(timerTask, 0, 1000)
+            }
+            Config.isLoaded = true
         }
         binding.btnPause.setOnClickListener {
             binding.btnPause.visibility = Button.INVISIBLE
