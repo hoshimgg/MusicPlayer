@@ -2,6 +2,7 @@ package xyz.miaoguoge.musicplayer
 
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -85,6 +86,26 @@ class PlayerActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
+
+        binding.btnNext.setOnClickListener {
+            Config.mediaPlayer.stop()
+            Config.mediaPlayer.release()
+            val assetManager = assets
+            if (Config.currentMusic < Config.musicList.size - 1) {
+                Config.currentMusic++
+            } else {
+                Config.currentMusic = 0
+            }
+            val fd = assetManager.openFd(Config.musicList[Config.currentMusic])
+            Config.mediaPlayer = MediaPlayer()
+            Config.mediaPlayer.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+            Config.mediaPlayer.prepare()
+            Config.mediaPlayer.start()
+            Config.mmr.setDataSource(fd.fileDescriptor, fd.startOffset, fd.length)
+            updateInfo()
+            binding.btnPlay.visibility = Button.INVISIBLE
+            binding.btnPause.visibility = Button.VISIBLE
+        }
     }
 
     private fun updateInfo() {
