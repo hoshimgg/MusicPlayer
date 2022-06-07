@@ -28,13 +28,7 @@ class MainActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
-            binding.songTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
-            binding.songArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
-            val cover = Config.mmr.embeddedPicture
-            if (cover != null) {
-                val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
-                binding.imgCover.setImageBitmap(bitmap)
-            }
+            updateInfo()
         }
         binding.btnPause.setOnClickListener {
             binding.btnPause.visibility = Button.INVISIBLE
@@ -59,6 +53,16 @@ class MainActivity : AppCompatActivity() {
         binding.btnFavor.setOnClickListener {
             val intent = Intent(this, MyCollectionActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun updateInfo() {
+        binding.songTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+        binding.songArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+        val cover = Config.mmr.embeddedPicture
+        if (cover != null) {
+            val bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
+            binding.imgCover.setImageBitmap(bitmap)
         }
     }
 

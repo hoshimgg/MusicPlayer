@@ -18,7 +18,7 @@ class PlayerActivity : AppCompatActivity() {
         if (Config.mediaPlayer.isPlaying) {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
-            updateUI()
+            updateInfo()
         } else {
             binding.btnPause.visibility = Button.INVISIBLE
             binding.btnPlay.visibility = Button.VISIBLE
@@ -28,7 +28,7 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
-            updateUI()
+            updateInfo()
         }
         binding.btnPause.setOnClickListener {
             binding.btnPause.visibility = Button.INVISIBLE
@@ -37,7 +37,7 @@ class PlayerActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI() {
+    private fun updateInfo() {
         binding.tvSongTitle.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
         binding.tvSongArtist.text = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
         val cover = Config.mmr.embeddedPicture
