@@ -18,16 +18,16 @@ class PlayerActivity : AppCompatActivity() {
         if (Config.mediaPlayer.isPlaying) {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
+        }
+        if (Config.isLoaded) {
             updateInfo()
-        } else {
-            binding.btnPause.visibility = Button.INVISIBLE
-            binding.btnPlay.visibility = Button.VISIBLE
         }
 
         binding.btnPlay.setOnClickListener {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
+            Config.isLoaded = true
             updateInfo()
         }
         binding.btnPause.setOnClickListener {

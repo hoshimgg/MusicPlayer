@@ -6,4 +6,5 @@ import android.media.MediaPlayer
 object Config {
     val mediaPlayer = MediaPlayer()
     val mmr = MediaMetadataRetriever()
+    var isLoaded = false
 }

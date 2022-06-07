@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             binding.btnPlay.visibility = Button.INVISIBLE
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
+            Config.isLoaded = true
             updateInfo()
         }
         binding.btnPause.setOnClickListener {
@@ -54,7 +55,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MyCollectionActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun onStart() {
+        super.onStart()
+        if (Config.isLoaded) {
+            updateInfo()
+        }
+        if (Config.mediaPlayer.isPlaying) {
+            binding.btnPlay.visibility = Button.INVISIBLE
+            binding.btnPause.visibility = Button.VISIBLE
+        } else {
+            binding.btnPlay.visibility = Button.VISIBLE
+            binding.btnPause.visibility = Button.INVISIBLE
+        }
     }
 
     private fun updateInfo() {
