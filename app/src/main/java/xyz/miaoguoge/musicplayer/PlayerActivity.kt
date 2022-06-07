@@ -219,7 +219,13 @@ class PlayerActivity : AppCompatActivity() {
                 Toast.makeText(this, "添加到歌单", Toast.LENGTH_SHORT).show()
             }
             R.id.goto_album -> {
+                val albumFragment = AlbumFragment()
                 val intent = Intent(this, LocalMusicActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.goto_artist -> {
+                val intent = Intent(this, LocalMusicActivity::class.java)
+                startActivity(intent)
             }
         }
         return true

@@ -10,6 +10,10 @@ public class MusicFragmentPageAdapter extends FragmentStateAdapter {
         super(fragmentActivity);
     }
 
+    public MusicFragmentPageAdapter(@NonNull Fragment fragment) {
+        super(fragment);
+    }
+
     @NonNull
     @Override
     public Fragment createFragment(int position) {
