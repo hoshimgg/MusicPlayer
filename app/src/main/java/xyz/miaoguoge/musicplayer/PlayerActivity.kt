@@ -45,6 +45,18 @@ class PlayerActivity : AppCompatActivity() {
     }
     private val timer = Timer()
 
+    private fun setStarBtn() {
+        val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])
+        if (curSong in Global.Favor) {
+            Log.d("PlayerActivity", "curSong in Global.Favor")
+            binding.btnStarNo.visibility = Button.INVISIBLE
+            binding.btnStarYes.visibility = Button.VISIBLE
+        } else {
+            Log.d("PlayerActivity", "curSong not in Global.Favor")
+            binding.btnStarNo.visibility = Button.VISIBLE
+            binding.btnStarYes.visibility = Button.INVISIBLE
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +69,7 @@ class PlayerActivity : AppCompatActivity() {
         }
         if (Config.isLoaded) {
             updateInfo()
+            setStarBtn()
             timer.schedule(timerTask, 0, 1000)
         }
 
@@ -65,6 +78,7 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnPause.visibility = Button.VISIBLE
             Config.mediaPlayer.start()
             updateInfo()
+            setStarBtn()
             if (!Config.isLoaded) {
                 timer.schedule(timerTask, 0, 1000)
             }
@@ -149,32 +163,16 @@ class PlayerActivity : AppCompatActivity() {
             binding.btnStarNo.visibility = Button.INVISIBLE
             binding.btnStarYes.visibility = Button.VISIBLE
             //添加到收藏
-            var song_temp = Song();
-            song_temp.Album = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
-            song_temp.Artist = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
-            song_temp.Title = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
-            song_temp.Filename = Config.musicList[Config.currentMusic]
-            var cover = Config.mmr.getEmbeddedPicture()
-            if (cover != null) {
-                song_temp.bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
-            }
-            Global.Favor.add(song_temp)
+            val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])!!
+            Global.Favor.add(curSong)
             Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show()
         }
         binding.btnStarYes.setOnClickListener {
             binding.btnStarYes.visibility = Button.INVISIBLE
             binding.btnStarNo.visibility = Button.VISIBLE
             //从收藏中移除
-            var song_temp = Song();
-            song_temp.Album = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
-            song_temp.Artist = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
-            song_temp.Title = Config.mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
-            song_temp.Filename = Config.musicList[Config.currentMusic]
-            var cover = Config.mmr.getEmbeddedPicture()
-            if (cover != null) {
-                song_temp.bitmap = BitmapFactory.decodeByteArray(cover, 0, cover.size)
-            }
-            Global.Favor.remove(song_temp)
+            val curSong = Global.getSongByFilename(Config.musicList[Config.currentMusic])
+            Global.Favor.remove(curSong)
             Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show()
         }
     }
